@@ -1,91 +1,70 @@
-# Ex24 Topological Sort
+# Ex25 Adjacency List Representation
 ## DATE:
 ## AIM:
-To compose the code to determine whether the topological ordering for the following graph is possible or not.
-
-![image](https://github.com/user-attachments/assets/c74a7111-9b59-475c-aad4-9baf23d50ec0)
-
+To write a C program to represent the given graph using the adjacency list.
 
 ## Algorithm
-1. Calculate indegree of each vertex and enqueue vertices with indegree 0
-2. While queue is not empty, dequeue vertex v and add it to topological order
-3. For each neighbor of v, remove edge v->neighbor and decrement indegree of neighbor
-4. If indegree of neighbor becomes 0, enqueue neighbor
-5. If all vertices processed, print topological order; else, report cycle
- 
+1. Read the number of vertices (N) and number of edges (n) from input.
+2. Create an array of edges and read source and destination for each edge.
+3. Build the graph using the createGraph() function with the edge array.
+4. Display the adjacency list of the graph using printGraph().
+5. Exit the program.  
 
 ## Program:
 ```
 
-Program to determine whether the topological ordering for the following graph is possible or not
+Program to represent the given graph using the adjacency list.
 Developed by: T.RUCHITRA
 RegisterNumber: 212223110043
 
-//#include<stdio.h>
-//#include<stdlib.h>
-
-//#define MAX 5
-
-//int n;    
-//int adj[MAX][MAX]; 
-//void create_graph();
-
-//int queue[MAX], front = -1,rear = -1;
-//void insert_queue(int v);
-//int delete_queue();
-//int isEmpty_queue();
-
-//int indegree(int v);
-
-int main()
+/*#include <stdio.h>
+#include <stdlib.h>
+ 
+// Define the maximum number of vertices in the graph
+int N; 
+ 
+// Data structure to store a graph object
+struct Graph
 {
-        int i,v,count,topo_order[MAX],indeg[MAX];
-
-        create_graph();
-
-        /*Find the indegree of each vertex*/
-        for(i=0;i<n;i++)
-        {
-                indeg[i] = indegree(i);
-                if( indeg[i] == 0 )
-                        insert_queue(i);
-        }
-
-        count = 0;
-
-        while(  !isEmpty_queue( ) && count < n )
-        {
-                v = delete_queue();
-        topo_order[++count] = v; 
-                for(i=0; i<n; i++)
-                {
-                        if(adj[v][i] == 1)
-                        {
-                                adj[v][i] = 0;
-                                indeg[i] = indeg[i]-1;
-                                if(indeg[i] == 0)
-                                        insert_queue(i);
-                        }
-                }
-        }
-
-        if( count < n )
-        {
-                printf("No topological ordering possible, graph contains cycle\n");
-                exit(1);
-        }
-        printf("Vertices in topological order are :\n");
-        for(i=1; i<=count; i++)
-                printf( "%d ",topo_order[i] );
-        printf("\n");
-
-        return 0;
+    // An array of pointers to Node to represent an adjacency list
+    struct Node* head[10];
+};
+ 
+// Data structure to store adjacency list nodes of the graph
+struct Node
+{
+    int dest;
+    struct Node* next;
+};
+ 
+// Data structure to store a graph edge
+struct Edge {
+    int src, dest;
+   
+} *edges[50];
+*/
+int main(void)
+{   
+    int n;
+    scanf("%d",&N);
+    scanf("%d",&n);
+    struct Edge edges[n];
+    for(int i=0;i<n;i++){
+        scanf("%d",&edges[i].src);
+        scanf("%d",&edges[i].dest);
+    }
+    struct Graph* graph=createGraph(edges,n);
+    printGraph(graph);
+    return 0;
 }
+
+
+
 ```
 
 ## Output:
-![topo](https://github.com/user-attachments/assets/092ac3c2-ac01-4bbc-811e-bc998813f12d)
+![adjlist](https://github.com/user-attachments/assets/bacea2bb-82d9-4477-900c-609e9d035e03)
 
 
 ## Result:
-Thus, the C program for determining whether the topological ordering for the following graph is possible or not, is implemented successfully.
+Thus, the C program to represent the given graph using the adjacency list is implemented successfully
